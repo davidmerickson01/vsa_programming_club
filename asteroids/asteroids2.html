@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asteroids 2</title>
+</head>
+<body>
+Use left/right arrows to move, space to fire!
+<canvas id="myCanvas" width="480" height="320" style="background-color:#eee;display:block;margin:0 auto"></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+const center_x = canvas.width/2;
+const center_y = canvas.height/2;
+var ctx = canvas.getContext("2d");
+var angle = 0; // degrees, 0 == pointing right
+const block_width = 30;
+const block_height = 15;
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+var bullets = Array();
+
+document.addEventListener("keydown", keyDownHandler);
+
+function keyDownHandler(e) {
+    console.log(e.key)
+    // use keyDown/keyUp to allow continuous movement with multiple keys
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        angle += 10
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        angle -= 10
+    }
+    else if(e.key == " ") {
+        fire();
+    }
+    if (angle > 360) angle -= 360;
+}
+
+function fire() {
+    // bullets is an array, each element is an array of [angle,distance]
+    // start at block_width/2 so we're outside the edge of the cannon
+    // TODO: make bullet a class
+    bullets.push([angle, block_width/2])
+}
+
+function drawBullets() {
+    ctx.beginPath();
+    for (let i=0;i<bullets.length;) {
+        let radius = bullets[i][1]
+        let radians = (Math.PI/180)*bullets[i][0];
+        ctx.save();
+        ctx.translate(center_x, center_y);
+        ctx.rotate(radians);
+        ctx.translate(radius, 0);
+        ctx.rect(-2, -2, 4, 4);
+        ctx.fillStyle = "#000000"; // black
+        ctx.fill();
+        ctx.restore();
+        
+        // calc untransformed coordinate of bullet
+        x = center_x + Math.cos(radians) * radius;
+        y = center_y + Math.sin(radians) * radius;
+        //console.log("coord " + x + "," + y);
+        if (x < 15 || y < 15 || x > canvas.width - 15 || y > canvas.height - 15) {
+            // remove if off screen, but with a margin so we can see it disappear
+            bullets.splice(i,1);
+        }
+        else {
+            bullets[i][1] += 1
+            i++;
+        }
+    }
+    ctx.closePath();
+}
+
+function drawShip() {
+  ctx.beginPath();
+  // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations
+  ctx.save();
+  ctx.translate(center_x, center_y);
+  // convert from degrees to radians
+  ctx.rotate((Math.PI/180)*angle);
+  ctx.rect(-block_width/2, -block_height/2, block_width, block_height);
+  ctx.fillStyle = "#FF0000";
+  ctx.fill();
+  ctx.restore();
+  ctx.closePath();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawShip();
+  drawBullets();
+}
+
+setInterval(draw, 10);
+</script>
+
+</body>
+</html>

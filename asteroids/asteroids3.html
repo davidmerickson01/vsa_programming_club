@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asteroid 3</title>
+</head>
+<body>
+Use left/right arrows to move, space to fire!
+<canvas id="myCanvas" width="480" height="320" style="background-color:#000;display:block;margin:0 auto"></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+const center_x = canvas.width/2;
+const center_y = canvas.height/2;
+var ctx = canvas.getContext("2d");
+var angle = 0; // degrees, 0 == pointing right
+const block_width = 30;
+const block_height = 15;
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+var bullets = Array();
+var asteroids = Array();
+
+document.addEventListener("keydown", keyDownHandler);
+document.addEventListener("keyup", keyUpHandler);
+
+var leftDown = false;
+var rightDown = false;
+var spaceDown = false;
+function keyDownHandler(e) {
+    console.log(e.key)
+    // use keyDown/keyUp to allow continuous movement with multiple keys
+    if (e.key == "Right" || e.key == "ArrowRight") {
+        rightDown = true;
+    }
+    else if (e.key == "Left" || e.key == "ArrowLeft") {
+        leftDown = true;
+    }
+    else if (e.key == " ") {
+        spaceDown = true;
+    }
+}
+function keyUpHandler(e) {
+    // use keyDown/keyUp to allow continuous movement with multiple keys
+    if (e.key == "Right" || e.key == "ArrowRight") {
+        rightDown = false;
+    }
+    else if (e.key == "Left" || e.key == "ArrowLeft") {
+        leftDown = false;
+    }
+    else if (e.key == " ") {
+        spaceDown = false;
+    }
+}
+
+class Bullet {
+    constructor(angle) {
+        this.angle = angle;
+        this.radius = block_width/2;
+        this.speed = 0;
+        this.move(0);
+        this.speed = 1;
+    }
+    radians() {
+        return (Math.PI/180)*this.angle;
+    }
+    draw(ctx) {
+        ctx.beginPath();
+        ctx.save();
+        ctx.translate(center_x, center_y);
+        ctx.rotate(this.radians());
+        ctx.translate(this.radius, 0);
+        ctx.rect(-2, -2, 4, 4);
+        ctx.fillStyle = "rgb(250,97,65)";
+        ctx.fill();
+        ctx.restore();
+        ctx.closePath();
+    }
+    move(inc) {
+        this.radius += this.speed;
+        // calc untransformed coordinate of bullet
+        this.x = center_x + Math.cos(this.radians()) * this.radius;
+        this.y = center_y + Math.sin(this.radians()) * this.radius;
+        return this.isOffscreen();
+    }
+    isOffscreen() {
+        //console.log("coord " + x + "," + y);
+        return (this.x < 15 || this.y < 15 || this.x > canvas.width - 15 || this.y > canvas.height - 15);
+    }
+}
+
+class Asteroid {
+    constructor(radius,x,y,dx,dy) {
+        this.radius = radius;
+        this.x = x;
+        this.y = y;
+        this.dx = dx;
+        this.dy = dy;
+    }
+    draw(ctx) {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        if (this.destroyed > 0) {
+            ctx.fillStyle = "rgb(248,67,103)";
+            this.destroyed--;
+        }
+        else {
+            ctx.fillStyle = "rgb(153,147,168)";
+        }
+        ctx.fill();
+        ctx.closePath();
+    }
+    move() {
+        this.x += this.dx;
+        this.y += this.dy;
+        return this.isOffscreen() || this.destroyed;
+    }
+    collides(x,y) {
+        if ((x-this.x)**2 + (y-this.y)**2 <= this.radius**2) {
+            console.log(x,y,this.x,this.y,this.radius);
+        }
+        return (x-this.x)**2 + (y-this.y)**2 <= this.radius**2;
+    }
+    isOffscreen() {
+        //console.log("coord " + x + "," + y);
+        return (this.x < 0 || this.y < 0 || this.x > canvas.width || this.y > canvas.height);
+    }
+}
+
+function drawList(list) {
+    for (let i=0;i<list.length;) {
+        list[i].draw(ctx);
+        if (list[i].move()) {
+            // remove if off screen, but with a margin so we can see it disappear
+            list.splice(i,1);
+        }
+        else {
+            i++;
+        }
+    }
+}
+
+function drawShip() {
+  ctx.beginPath();
+  // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations
+  ctx.save();
+  ctx.translate(center_x, center_y);
+  // convert from degrees to radians
+  ctx.rotate((Math.PI/180)*angle);
+  ctx.moveTo(-block_width/2,-block_height/2);
+  ctx.lineTo(block_width/2,0);
+  ctx.lineTo(-block_width/2,block_height/2);
+  ctx.lineTo(-block_width/2,-block_height/2);
+  //ctx.rect(-block_width/2, -block_height/2, block_width, block_height);
+  ctx.fillStyle = "rgb(208,106,117)";
+  ctx.fill();
+  ctx.restore();
+  ctx.closePath();
+}
+
+var cnt = 0;
+var fire_cnt = 0;
+function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (++cnt % 100 == 0) {
+        // all asteriods start from one of 4 sides, heading across
+        let x,y;
+        if (Math.random() < 0.5) {
+            x = Math.random()< 0.5 ? 0 : canvas.width-1;
+            y = Math.random() * canvas.height;
+        }
+        else {
+            x = Math.random() * canvas.width;
+            y = Math.random()< 0.5 ? 0 : canvas.height-1;
+        }
+        let dx = Math.random()*2-1;
+        if (x == canvas.width-1) dx = Math.random() * -1;
+        let dy = Math.random()*2-1;
+        if (y == canvas.height-1) dy = Math.random() * -1;
+        console.log(x,y,dx,dy);
+        asteroids.push(new Asteroid(Math.random() * 10 + 3, x, y, dx, dy));
+    }
+    if (leftDown) angle -= 3;
+    else if (rightDown) angle += 3;
+    angle = angle % 360;
+    if (spaceDown && !fire_cnt && bullets.length < 10) {
+        bullets.push(new Bullet(angle))
+        fire_cnt = 15;
+    }
+    if (fire_cnt) fire_cnt--;
+    
+    drawShip();
+    drawList(bullets);
+    drawList(asteroids);
+  
+    // check for collisions
+    for (let i=0;i<asteroids.length;i++) {
+        for (let j=0;j<bullets.length;j++) {
+            if (asteroids[i].collides(bullets[j].x,bullets[j].y)) {
+                if (!asteroids[i].destroyed) asteroids[i].destroyed = 20;
+                break;
+            }
+        }
+    }
+    
+    // TODO: check for collision with the ship, need hit points
+}
+
+setInterval(draw, 10);
+</script>
+
+</body>
+</html>

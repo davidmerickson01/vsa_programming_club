@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Asteroids 1</title>
+</head>
+<body>
+<canvas id="myCanvas" width="480" height="320" style="background-color:#eee;display:block;margin:0 auto"></canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+var angle = 0;
+const block_width = 30;
+const block_height = 30;
+
+document.addEventListener("keydown", keyDownHandler);
+
+function keyDownHandler(e) {
+    //console.log(e.key)
+    if(e.key == "Right" || e.key == "ArrowRight") {
+        angle += 10
+    }
+    else if(e.key == "Left" || e.key == "ArrowLeft") {
+        angle -= 10
+    }
+    if (angle > 360) angle -= 360;
+}
+
+function drawShip() {
+  ctx.beginPath();
+  // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations
+  ctx.save();
+  ctx.translate(canvas.width/2, canvas.height/2);
+  // convert from degrees to radians
+  ctx.rotate((Math.PI/180)*angle);
+  ctx.rect(-block_width/2, -block_height/2, block_width, block_height);
+  ctx.fillStyle = "#FF0000";
+  ctx.fill();
+  ctx.restore();
+  ctx.closePath();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawShip();
+}
+
+setInterval(draw, 10);
+</script>
+
+</body>
+</html>
