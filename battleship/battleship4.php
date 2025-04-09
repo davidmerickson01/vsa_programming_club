@@ -13,8 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     }
 }
 
-$game_board_filename = "game_board_$session.txt";
-$game_state_filename = "game_state_$session.txt";
+$game_board_filename = "gamedata/game_board_$session.txt";
+$game_state_filename = "gamedata/game_state_$session.txt";
 
 // states: place, guess
 

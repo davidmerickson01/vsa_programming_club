@@ -2,7 +2,7 @@
 
 <?php
 $session = "0";
-$game_filename = "game_$session.txt";
+$game_filename = "gamedata/game_$session.txt";
 
 // read or create game board
 $str = file_get_contents($game_filename);
