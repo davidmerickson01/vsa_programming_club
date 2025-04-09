@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+body { 
+  background-color: #0686D4;
+  background-opacity: 0.5;
+  overflow: hidden;
+}
+ 
+.container {
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  padding: 10px;
+}
+.container > div {
+  border: 1px solid black;
+  font-size: 30px;
+  text-align: center;
+  background-color: #48B6FA;
+  display: grid; 
+  align-items: center; 
+  justify-items: center;
+}
+
+.econtainer {
+  display: grid;
+  grid-template-columns: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  grid-template-rows: 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px 50px;
+  padding: 10px;
+  position: absolute;
+  right: 50px;
+  top: 50px;
+}
+.econtainer > div {
+  border: 1px solid black;
+  font-size: 30px;
+  text-align: center;
+  background-color: #48B6FA;
+  display: grid; 
+  align-items: center; 
+  justify-items: center;
+}
+
+</style>
+
+</head>
+<body>
+<script>
+
+function callCoordinates(coordinates) {
+console.log('You called ' + coordinates)
+x = document.getElementById(coordinates);
+x.style.backgroundColor = 'red';
+}
+
+</script>
+
+<p>Shots Fired:</p>
+
+<div class="container">
+
+
+	<!-- 1-10 markers -->
+	<div></div>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+	<div>5</div>
+	<div>6</div>
+	<div>7</div>
+	<div>8</div>
+	<div>9</div>
+	<div>10</div>
+
+
+  <div>A</div>
+  <div id="A1" onclick="callCoordinates('A1')"></div>
+  <div id="A2" onclick="callCoordinates('A2')"></div>
+  <div id="A3" onclick="callCoordinates('A3')"></div>
+  <div id="A4" onclick="callCoordinates('A4')"></div>
+  <div id="A5" onclick="callCoordinates('A5')"></div>
+  <div id="A6" onclick="callCoordinates('A6')"></div>
+  <div id="A7" onclick="callCoordinates('A7')"></div>
+  <div id="A8" onclick="callCoordinates('A8')"></div>
+  <div id="A9" onclick="callCoordinates('A9')"></div>
+  <div id="A10" onclick="callCoordinates('A10')"></div>
+  
+  <div>B</div>
+  <div id="B1" onclick="callCoordinates('B1')"></div>
+  <div id="B2" onclick="callCoordinates('B2')"></div>
+  <div id="B3" onclick="callCoordinates('B3')"></div>
+  <div id="B4" onclick="callCoordinates('B4')"></div>
+  <div id="B5" onclick="callCoordinates('B5')"></div>
+  <div id="B6" onclick="callCoordinates('B6')"></div>
+  <div id="B7" onclick="callCoordinates('B7')"></div>
+  <div id="B8" onclick="callCoordinates('B8')"></div>
+  <div id="B9" onclick="callCoordinates('B9')"></div>
+  <div id="B10" onclick="callCoordinates('B10')"></div>
+  
+  <div>C</div>
+  <div id="C1" onclick="callCoordinates('C1')"></div>
+  <div id="C2" onclick="callCoordinates('C2')"></div>
+  <div id="C3" onclick="callCoordinates('C3')"></div>
+  <div id="C4" onclick="callCoordinates('C4')"></div>
+  <div id="C5" onclick="callCoordinates('C5')"></div>
+  <div id="C6" onclick="callCoordinates('C6')"></div>
+  <div id="C7" onclick="callCoordinates('C7')"></div>
+  <div id="C8" onclick="callCoordinates('C8')"></div>
+  <div id="C9" onclick="callCoordinates('C9')"></div>
+  <div id="C10" onclick="callCoordinates('C10')"></div>
+  
+    <div>D</div>
+  <div id="D1" onclick="callCoordinates('D1')"></div>
+  <div id="D2" onclick="callCoordinates('D2')"></div>
+  <div id="D3" onclick="callCoordinates('D3')"></div>
+  <div id="D4" onclick="callCoordinates('D4')"></div>
+  <div id="D5" onclick="callCoordinates('D5')"></div>
+  <div id="D6" onclick="callCoordinates('D6')"></div>
+  <div id="D7" onclick="callCoordinates('D7')"></div>
+  <div id="D8" onclick="callCoordinates('D8')"></div>
+  <div id="D9" onclick="callCoordinates('D9')"></div>
+  <div id="D10" onclick="callCoordinates('D10')"></div>
+  
+    <div>E</div>
+  <div id="E1" onclick="callCoordinates('E1')"></div>
+  <div id="E2" onclick="callCoordinates('E2')"></div>
+  <div id="E3" onclick="callCoordinates('E3')"></div>
+  <div id="E4" onclick="callCoordinates('E4')"></div>
+  <div id="E5" onclick="callCoordinates('E5')"></div>
+  <div id="E6" onclick="callCoordinates('E6')"></div>
+  <div id="E7" onclick="callCoordinates('E7')"></div>
+  <div id="E8" onclick="callCoordinates('E8')"></div>
+  <div id="E9" onclick="callCoordinates('E9')"></div>
+  <div id="E10" onclick="callCoordinates('E10')"></div>
+  
+    
+    <div>F</div>
+  <div id="F1" onclick="callCoordinates('F1')"></div>
+  <div id="F2" onclick="callCoordinates('F2')"></div>
+  <div id="F3" onclick="callCoordinates('F3')"></div>
+  <div id="F4" onclick="callCoordinates('F4')"></div>
+  <div id="F5" onclick="callCoordinates('F5')"></div>
+  <div id="F6" onclick="callCoordinates('F6')"></div>
+  <div id="F7" onclick="callCoordinates('F7')"></div>
+  <div id="F8" onclick="callCoordinates('F8')"></div>
+  <div id="F9" onclick="callCoordinates('F9')"></div>
+  <div id="F10" onclick="callCoordinates('F10')"></div>
+
+    <div>G</div>
+  <div id="G1" onclick="callCoordinates('G1')"></div>
+  <div id="G2" onclick="callCoordinates('G2')"></div>
+  <div id="G3" onclick="callCoordinates('G3')"></div>
+  <div id="G4" onclick="callCoordinates('G4')"></div>
+  <div id="G5" onclick="callCoordinates('G5')"></div>
+  <div id="G6" onclick="callCoordinates('G6')"></div>
+  <div id="G7" onclick="callCoordinates('G7')"></div>
+  <div id="G8" onclick="callCoordinates('G8')"></div>
+  <div id="G9" onclick="callCoordinates('G9')"></div>
+  <div id="G10" onclick="callCoordinates('G10')"></div>
+  
+    <div>H</div>
+  <div id="H1" onclick="callCoordinates('H1')"></div>
+  <div id="H2" onclick="callCoordinates('H2')"></div>
+  <div id="H3" onclick="callCoordinates('H3')"></div>
+  <div id="H4" onclick="callCoordinates('H4')"></div>
+  <div id="H5" onclick="callCoordinates('H5')"></div>
+  <div id="H6" onclick="callCoordinates('H6')"></div>
+  <div id="H7" onclick="callCoordinates('H7')"></div>
+  <div id="H8" onclick="callCoordinates('H8')"></div>
+  <div id="H9" onclick="callCoordinates('H9')"></div>
+  <div id="H10" onclick="callCoordinates('H10')"></div>
+  
+    <div>I</div>
+  <div id="I1" onclick="callCoordinates('I1')"></div>
+  <div id="I2" onclick="callCoordinates('I2')"></div>
+  <div id="I3" onclick="callCoordinates('I3')"></div>
+  <div id="I4" onclick="callCoordinates('I4')"></div>
+  <div id="I5" onclick="callCoordinates('I5')"></div>
+  <div id="I6" onclick="callCoordinates('I6')"></div>
+  <div id="I7" onclick="callCoordinates('I7')"></div>
+  <div id="I8" onclick="callCoordinates('I8')"></div>
+  <div id="I9" onclick="callCoordinates('I9')"></div>
+  <div id="I10" onclick="callCoordinates('I10')"></div>
+  
+    <div>J</div>
+  <div id="J1" onclick="callCoordinates('J1')"></div>
+  <div id="J2" onclick="callCoordinates('J2')"></div>
+  <div id="J3" onclick="callCoordinates('J3')"></div>
+  <div id="J4" onclick="callCoordinates('J4')"></div>
+  <div id="J5" onclick="callCoordinates('J5')"></div>
+  <div id="J6" onclick="callCoordinates('J6')"></div>
+  <div id="J7" onclick="callCoordinates('J7')"></div>
+  <div id="J8" onclick="callCoordinates('J8')"></div>
+  <div id="J9" onclick="callCoordinates('J9')"></div>
+  <div id="J10" onclick="callCoordinates('J10')"></div>
+
+  
+ 
+</div>
+
+<div class="econtainer">
+
+
+	<!-- 1-10 markers -->
+	<div></div>
+	<div>1</div>
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+	<div>5</div>
+	<div>6</div>
+	<div>7</div>
+	<div>8</div>
+	<div>9</div>
+	<div>10</div>
+
+
+  <div>A</div>
+  <div id="EA1"></div>
+  <div id="EA2"></div>
+  <div id="EA3"></div>
+  <div id="EA4"></div>
+  <div id="EA5"></div>
+  <div id="EA6"></div>
+  <div id="EA7"></div>
+  <div id="EA8"></div>
+  <div id="EA9"></div>
+  <div id="EA10"></div>
+  
+  <div>B</div>
+  <div id="EB1"></div>
+  <div id="EB2"></div>
+  <div id="EB3"></div>
+  <div id="EB4"></div>
+  <div id="EB5"></div>
+  <div id="EB6"></div>
+  <div id="EB7"></div>
+  <div id="EB8"></div>
+  <div id="EB9"></div>
+  <div id="EB10"></div>
+  
+  <div>C</div>
+  <div id="EC1"></div>
+  <div id="EC2"></div>
+  <div id="EC3"></div>
+  <div id="EC4"></div>
+  <div id="EC5"></div>
+  <div id="EC6"></div>
+  <div id="EC7"></div>
+  <div id="EC8"></div>
+  <div id="EC9"></div>
+  <div id="EC10"></div>
+  
+    <div>D</div>
+  <div id="ED1"></div>
+  <div id="ED2"></div>
+  <div id="ED3"></div>
+  <div id="ED4"></div>
+  <div id="ED5"></div>
+  <div id="ED6"></div>
+  <div id="ED7"></div>
+  <div id="ED8"></div>
+  <div id="ED9"></div>
+  <div id="ED10"></div>
+  
+    <div>E</div>
+  <div id="EE1"></div>
+  <div id="EE2"></div>
+  <div id="EE3"></div>
+  <div id="EE4"></div>
+  <div id="EE5"></div>
+  <div id="EE6"></div>
+  <div id="EE7"></div>
+  <div id="EE8"></div>
+  <div id="EE9"></div>
+  <div id="EE10"></div>
+  
+    
+    <div>F</div>
+  <div id="EF1" ></div>
+  <div id="EF2"></div>
+  <div id="EF3"></div>
+  <div id="EF4"></div>
+  <div id="EF5"></div>
+  <div id="EF6"></div>
+  <div id="EF7"></div>
+  <div id="EF8"></div>
+  <div id="EF9"></div>
+  <div id="EF10"></div>
+
+    <div>G</div>
+  <div id="EG1"></div>
+  <div id="EG2"></div>
+  <div id="EG3"></div>
+  <div id="EG4"></div>
+  <div id="EG5"></div>
+  <div id="EG6"></div>
+  <div id="EG7"></div>
+  <div id="EG8"></div>
+  <div id="EG9"></div>
+  <div id="EG10"></div>
+  
+    <div>H</div>
+  <div id="EH1"></div>
+  <div id="EH2"></div>
+  <div id="EH3"></div>
+  <div id="EH4"></div>
+  <div id="EH5"></div>
+  <div id="EH6"></div>
+  <div id="EH7"></div>
+  <div id="EH8"></div>
+  <div id="EH9"></div>
+  <div id="EH10"></div>
+  
+    <div>I</div>
+  <div id="EI1"></div>
+  <div id="EI2"></div>
+  <div id="EI3"></div>
+  <div id="EI4"></div>
+  <div id="EI5"></div>
+  <div id="EI6"></div>
+  <div id="EI7"></div>
+  <div id="EI8"></div>
+  <div id="EI9"></div>
+  <div id="EI10"></div>
+  
+    <div>J</div>
+  <div id="EJ1"></div>
+  <div id="EJ2"></div>
+  <div id="EJ3"></div>
+  <div id="EJ4"></div>
+  <div id="EJ5"></div>
+  <div id="EJ6"></div>
+  <div id="EJ7"></div>
+  <div id="EJ8"></div>
+  <div id="EJ9"></div>
+  <div id="EJ10"></div>
+  
+ 
+</div>
+
+
+</body>
+</html>
+
+
