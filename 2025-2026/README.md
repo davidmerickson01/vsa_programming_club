@@ -1,6 +1,6 @@
 * Welcome to VSA Programming Club for 2025-2026
 
-This year we're going to learn Pythonn (<https://www.python.org/>), Generative AI, and github (<https://github.com/>).
+This year we're going to learn Python (<https://www.python.org/>), Generative AI, and github (<https://github.com/>).
 
 We'll be using <https://www.w3schools.com> for Python tutorials and references
 
