@@ -22,7 +22,7 @@ BLACK = (0, 0, 0)
 
 # Font setup
 font = pygame.font.SysFont(None, 48)
-text_surface = font.render("Hello Cade!", True, BLUE)
+text_surface = font.render("Hello Jacob!", True, BLUE)
 
 # Clock
 clock = pygame.time.Clock()
