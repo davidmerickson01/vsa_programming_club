@@ -1,6 +1,10 @@
 import pygame
 import sys
 
+# from chatgpt prompt:
+# create a python program that uses pygame to say Hello World
+# and draw a few shapes on the screen with different colors
+
 # Initialize pygame
 pygame.init()
 
