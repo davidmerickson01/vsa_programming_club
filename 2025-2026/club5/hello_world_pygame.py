@@ -22,7 +22,7 @@ BLACK = (0, 0, 0)
 
 # Font setup
 font = pygame.font.SysFont(None, 48)
-text_surface = font.render("Hello World", True, BLACK)
+text_surface = font.render("Hello Cade!", True, BLUE)
 
 # Clock
 clock = pygame.time.Clock()
@@ -41,7 +41,7 @@ while running:
     screen.blit(text_surface, (WIDTH // 2 - text_surface.get_width() // 2, 30))
 
     # Draw shapes
-    pygame.draw.rect(screen, RED, (50, 120, 150, 80))        # Rectangle
+    pygame.draw.rect(screen, BLACK, (0, 0, 100, 100))        # Rectangle
     pygame.draw.circle(screen, BLUE, (350, 200), 50)         # Circle
     pygame.draw.line(screen, GREEN, (100, 350), (500, 350), 5)  # Line
 
