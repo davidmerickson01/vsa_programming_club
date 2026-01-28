@@ -13,4 +13,8 @@ Here are the class repos:
 * Mia F: https://github.com/winteramaryllis/vine-peace-twentythree
 * Jacob P: https://github.com/LegominerJ/J-Unity---Launcher-Source/blob/master/Launcher.zip
 * Daren N: https://github.com/The3DP/Code-Samples
+* Trevor S: https://github.com/Trev033/T-srepo/tree/c45a124feb5e66fc91972b29ee1070e135f5ded5
+* Ezra K: https://github.com/Kolbert123/VSA-club
+* Titus J: https://github.com/TNT927/TNT001/tree/main
+* Jude K: https://github.com/Jk062009/I-never-can-think-of-good-titles
 * more to come
