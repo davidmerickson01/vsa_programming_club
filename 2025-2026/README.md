@@ -11,7 +11,8 @@ We're also going to learn by using <https://chatgpt.com> and <https://gemini.goo
 Here are the class repos:
 * Mr. Erickson: https://github.com/davidmerickson01/vsa_programming_club/edit/master/2025-2026
 * Mia F: https://github.com/winteramaryllis/vine-peace-twentythree
-* Jacob P: https://github.com/LegominerJ/J-Unity---Launcher-Source/blob/master/Launcher.zip
+* Jacob P: https://github.com/LegominerJ/Miscellaneous--Python
+   * https://github.com/LegominerJ/J-Unity---Launcher-Source/blob/master/Launcher.zip
 * Daren N: https://github.com/The3DP/Code-Samples
 * Trevor S: https://github.com/Trev033/T-srepo/tree/c45a124feb5e66fc91972b29ee1070e135f5ded5
 * Ezra K: https://github.com/Kolbert123/VSA-club
