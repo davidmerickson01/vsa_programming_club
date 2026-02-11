@@ -18,4 +18,5 @@ Here are the class repos:
 * Ezra K: https://github.com/Kolbert123/VSA-club
 * Titus J: https://github.com/TNT927/TNT001/tree/main
 * Jude K: https://github.com/Jk062009/I-never-can-think-of-good-titles
+* Sophie H: https://github.com/sophieswims7340/swimswimfree
 * more to come
