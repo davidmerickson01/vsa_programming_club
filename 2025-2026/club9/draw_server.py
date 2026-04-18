@@ -2,7 +2,7 @@ import socket
 import threading
 
 HOST = '0.0.0.0'
-PORT = 5555
+PORT = 5000
 
 clients = []
 
@@ -10,6 +10,7 @@ def broadcast(data, sender):
     for client in clients:
         if client != sender:
             try:
+                client.send(len(data).to_bytes(4))
                 client.send(data)
             except:
                 clients.remove(client)
@@ -20,12 +21,14 @@ def handle_client(conn, addr):
 
     try:
         while True:
-            data = conn.recv(1024)
+            n = int.from_bytes(conn.recv(4))
+            data = conn.recv(n)
+            #print("broadcast:",n,data.decode())
             if not data:
                 break
             broadcast(data, conn)
-    except:
-        pass
+    except Exception as e:
+        print(f"Type: {type(e).__name__} | Message: {e}")
 
     print(f"[DISCONNECTED] {addr}")
     clients.remove(conn)

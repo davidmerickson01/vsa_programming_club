@@ -3,8 +3,8 @@ import threading
 import pygame
 import random
 
-SERVER_IP = "127.0.0.1"  # change to your server IP
-PORT = 5555
+SERVER_IP = "127.0.0.1"
+PORT = 5000
 
 WIDTH, HEIGHT = 800, 600
 
@@ -29,7 +29,9 @@ client.connect((SERVER_IP, PORT))
 def receive():
     while True:
         try:
-            data = client.recv(1024).decode()
+            n = int.from_bytes(client.recv(4))
+            data = client.recv(n).decode()
+            #print("recv:", n, data)
             if data:
                 x, y, r, g, b = map(int, data.split())
                 pygame.draw.circle(screen, (r, g, b), (x, y), 5)
@@ -64,8 +66,11 @@ while running:
         pygame.draw.circle(screen, color, (x, y), 5)
 
         # Send to server
-        message = f"{x} {y} {color[0]} {color[1]} {color[2]}"
+        message = f"{x} {y} {color[0]} {color[1]} {color[2]} "
         try:
+            n = len(message.encode())
+            # print("send:", n, message)
+            client.send(n.to_bytes(4))
             client.send(message.encode())
         except:
             pass
