@@ -5,7 +5,7 @@ import random
 import sys
 
 # --- CONFIG ---
-SERVER_IP = "127.0.0.1"
+SERVER_IP = "vsaprogrammingclub.duckdns.org"
 PORT = 5000
 TILE_SIZE = 20
 HEADER_HEIGHT = 50
@@ -34,7 +34,7 @@ gem_img = pygame.image.load('gem.png')
 stone_img = pygame.image.load('stone.png')
 
 # Setup local state
-other_players = {} # Key: address/id, Value: (r, c, (color))
+other_players = {} # Key: address/id, Value: (r, c, (color), score)
 my_color = (random.randint(50,255), random.randint(50,255), random.randint(50,255))
 empty_spaces = [(r, c) for r in range(ROWS) for c in range(COLS) if maze[r][c].lower() == ' ']
 gems = {(r, c) for r in range(ROWS) for c in range(COLS) if maze[r][c].lower() == 'o'}
@@ -43,7 +43,7 @@ score = 0
 
 def send_move():
     # Format: "row col r g b"
-    msg = f"{player_pos[0]} {player_pos[1]} {my_color[0]} {my_color[1]} {my_color[2]}".encode()
+    msg = f"{player_pos[0]} {player_pos[1]} {my_color[0]} {my_color[1]} {my_color[2]} {score}".encode()
     client.send(len(msg).to_bytes(4, 'big'))
     client.send(msg)
 
@@ -56,8 +56,8 @@ def receive():
             data = client.recv(n).decode().split()
             if data:
                 # Store by unique combo of color as a proxy for ID
-                r, c, cr, cg, cb = map(int, data)
-                other_players[f"{cr}{cg}{cb}"] = (r, c, (cr, cg, cb))
+                r, c, cr, cg, cb, s  = map(int, data)
+                other_players[f"{cr}{cg}{cb}"] = (r, c, (cr, cg, cb), s)
         except:
             break
 
@@ -103,10 +103,11 @@ while True:
 
     # Draw Others, and consume gems
     for pid in other_players:
-        orow, ocol, ocolr = other_players[pid]
+        orow, ocol, ocolr, oscore = other_players[pid]
         if (orow, ocol) in gems:
             gems.remove((orow, ocol))
         pygame.draw.circle(screen, ocolr, (ocol*TILE_SIZE+10, orow*TILE_SIZE+HEADER_HEIGHT+10), 7)
+        screen.blit(font.render(f"{oscore}", True, (255,255,255)), (ocol*TILE_SIZE+10, orow*TILE_SIZE+HEADER_HEIGHT))
 
     # Draw Me
     pygame.draw.circle(screen, my_color, (player_pos[1]*TILE_SIZE+10, player_pos[0]*TILE_SIZE+HEADER_HEIGHT+10), 8)
