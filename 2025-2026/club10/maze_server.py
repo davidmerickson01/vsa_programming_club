@@ -33,8 +33,10 @@ def broadcast(data, sender):
             try:
                 client.send(len(data).to_bytes(4, 'big'))
                 client.send(data)
-            except:
+            except Exception as e:
+                print(f"Type: {type(e).__name__} | Message: {e}")
                 if client in clients:
+                    print("removing client",client)
                     clients.remove(client)
 
 def handle_client(conn, addr):
