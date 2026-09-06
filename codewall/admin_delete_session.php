@@ -24,7 +24,7 @@ if (!$existed) {
 
 $dir = session_dir($sid);
 if (is_dir($dir)) {
-    foreach (glob($dir . '/*.txt') as $file) {
+    foreach (glob($dir . '/*.py') as $file) {
         unlink($file);
     }
     rmdir($dir);

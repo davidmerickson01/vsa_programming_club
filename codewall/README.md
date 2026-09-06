@@ -33,7 +33,7 @@ land on a fresh session by guessing a URL.
   sent with every request instead of a cookie, so this doesn't depend on
   the serving webserver forwarding `Cookie` headers.
 - The textbox at the top is your own code; "Submit" POSTs it to
-  `submit.php`, which saves it to `sessions/<session-id>/<username>.txt`.
+  `submit.php`, which saves it to `sessions/<session-id>/<username>.py`.
   On page load, your own most recent submission (if any) pre-fills the box.
 - Everyone's latest submission — including your own — shows up below in
   read-only, syntax-highlighted panels (yours is labeled "(you)"). When

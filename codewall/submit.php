@@ -30,6 +30,6 @@ $dir = session_dir($sid);
 if (!is_dir($dir)) {
     mkdir($dir, 0777, true);
 }
-file_put_contents($dir . '/' . $username . '.txt', $code, LOCK_EX);
+file_put_contents($dir . '/' . $username . '.py', $code, LOCK_EX);
 
 json_response(200, ['ok' => true]);

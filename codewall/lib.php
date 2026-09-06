@@ -179,8 +179,8 @@ function get_session_meta(string $sessionId): ?array {
 function load_submissions(string $dir): array {
     $results = [];
     if (is_dir($dir)) {
-        foreach (glob($dir . '/*.txt') as $file) {
-            $username = basename($file, '.txt');
+        foreach (glob($dir . '/*.py') as $file) {
+            $username = basename($file, '.py');
             $code = file_get_contents($file);
             if ($code === false) {
                 continue;

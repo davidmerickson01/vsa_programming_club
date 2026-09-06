@@ -26,7 +26,7 @@ purge_tokens_for_user($target);
 
 // Remove all of their submitted code across every session.
 foreach (glob(__DIR__ . '/sessions/*', GLOB_ONLYDIR) as $dir) {
-    $file = $dir . '/' . $target . '.txt';
+    $file = $dir . '/' . $target . '.py';
     if (is_file($file)) {
         unlink($file);
     }
